@@ -2,24 +2,27 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
+
+            Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void OnLoaded(object? sender, EventArgs e)
         {
-            count++;
+            var debug = 0;
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        private void OnUnloaded(object? sender, EventArgs e)
+        {
+            var debug = 0;
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private async void Button_OnClicked(object? sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(Page2));
         }
     }
-
 }
